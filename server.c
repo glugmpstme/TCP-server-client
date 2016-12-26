@@ -1,8 +1,8 @@
+/*socket()---bind()---listen()---accept() */
 #include<stdio.h>
 #include<sys/socket.h>
 #include<netinet/in.h>
 
-#define port 
 void error(char *msg)
 {
 cout<<msg;
@@ -25,10 +25,18 @@ if(sockfd==-1)
 {
     error("socket won't work");
 }
-
 portno = atoi(argv[1]);
 serv_addr.sin_family = AF_INET;
 serv_addr.sin_port = htons(portno);
+serv_addr.sin_addr.s_addr = INADDR_ANY;
+//using the bind() function
+if(bind(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr))==-1)
+    error("error in binding");
+//using the listen() function
+listen(sockfd,10);
+//no need to check for error as socket argument has to be valid by this point.
+
 
 
 }
+

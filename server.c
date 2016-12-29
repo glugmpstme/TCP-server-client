@@ -14,8 +14,7 @@ void error(char *msg)
 }
 int main(int argc,char *argv[])
 {
-char hostname[100];
-char ipadd[100];
+
 char buff[500];
 int sockfd,newsockfd,portno;
 struct sockaddr_in serv_addr , cli_addr;
@@ -47,8 +46,6 @@ if(n=read(newsockfd, buff,200) < 0)
     error('error reading');
 printf("%s",buff);
 
-if(n=write(newsockfd,"vgmvhghmg",10) < 0)
-    error('error reading');
 
 return 0;
 }
